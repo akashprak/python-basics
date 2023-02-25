@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} cart {% endblock %}
+
+{% block body %}
+
+    <h2 style="text-align: left;">Cart</h2>
+    <table >
+        
+        <tr>
+          <th>Item</th>
+          <th>Quantity Purchased</th>
+          <th>Price</th>
+        </tr>
+
+        {% for item in Qty %}
+        <tr>
+          <td>{{item}}</td>
+          <td>{{Qty[item]}}</td>
+          <td>₹ {{ Qty[item] * items[item] }}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+<h3>Total : ₹ {{total}}</h3>
+
+{% if discount %}
+  <h4 style="color: blanchedalmond;">Congratulations. You are eligible for {{discount}} % discount</h4>
+
+  <h3>The total price is ₹ {{total * (100-discount)/100}}</h3>
+{% endif %}
+
+{% endblock %}
