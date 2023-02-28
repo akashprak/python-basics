@@ -1,5 +1,10 @@
 from flask import Flask,render_template,request
 from json import load
+import logging
+
+logging.basicConfig(filename='flaskLog.log' , level=logging.ERROR , 
+                    format='%(levelname)s :: %(asctime)s :: %(message)s', 
+                    datefmt='%d/%m/%Y  %I:%M:%S %p')
 
 app = Flask(__name__)
 
@@ -9,6 +14,7 @@ try:
 
 except FileNotFoundError:
     items={}
+    logging.error('json file not found')
 
 
 @app.route('/home/' , methods=['GET','POST'])
